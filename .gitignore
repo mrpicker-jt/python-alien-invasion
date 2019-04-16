@@ -12,5 +12,4 @@
 .gradle
 build/
 app/app.iml
-_pycache_/
-/_pycache_
+__pycache__/
