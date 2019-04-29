@@ -38,10 +38,13 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
-def update_screen(screen, settings, ship, bullets):
+
+
+def update_screen(screen, settings, ship, bullets,alien):
     screen.fill(settings.bg_color)
-    ship.blitme()
     for bullet in bullets.sprites():
         bullet.draw_bullet()
+    ship.blitme()
+    alien.blitme()
     # 让最近绘制的屏幕可见
     pygame.display.flip()

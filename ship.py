@@ -1,7 +1,7 @@
 import pygame
 
 
-class Ship():
+class Ship:
     """这是飞船类"""
 
     def __init__(self, screen, settings):

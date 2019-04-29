@@ -1,6 +1,6 @@
 # 存放alien_invasion所有设置的模块
 
-class Settings():
+class Settings:
     """docstring for Settings"""
 
     def __init__(self):
