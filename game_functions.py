@@ -2,6 +2,7 @@ import sys
 
 import pygame
 
+from alien import Alien
 from bullet import Bullet
 
 
@@ -38,13 +39,31 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
+def update_aliens(aliens):
+    aliens.update()
+    for alien in aliens.copy():
+        if alien.rect.top > alien.screen_rect.bottom:
+            aliens.remove(alien)
 
 
-def update_screen(screen, settings, ship, bullets,alien):
+def create_multi_aliens(aliens, screen, ai_settings):
+    image_rect = pygame.image.load('images/alien.bmp').get_rect()
+    max_raw_alien_count = int((ai_settings.width - image_rect.width * 2) / (2 * image_rect.width))
+    max_col_alien_count = int((ai_settings.height - image_rect.height * 4) / (2 * image_rect.height))
+    for x in range(max_raw_alien_count):
+        for y in range(max_col_alien_count):
+            alien = Alien(screen, ai_settings)
+            alien.set_position(image_rect.width + 2 * x * image_rect.width,
+                               image_rect.height + 2 * y * image_rect.height)
+            aliens.add(alien)
+
+
+def update_screen(screen, settings, ship, bullets, aliens):
     screen.fill(settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
-    alien.blitme()
+    for alien in aliens.sprites():
+        alien.blitme()
     # 让最近绘制的屏幕可见
     pygame.display.flip()

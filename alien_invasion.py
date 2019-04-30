@@ -23,6 +23,7 @@ def run_game():
     # 创建一个子弹组
     bullets = Group()
     aliens = Group()
+    gf.create_multi_aliens(aliens, screen, settings)
 
     # 开始游戏的主循环
     while True:
@@ -30,7 +31,8 @@ def run_game():
         gf.handle_events(settings, screen, ship, bullets)
         ship.update_self()
         gf.update_bullets(bullets)
-        gf.update_screen(screen, settings, ship, bullets, alien)
+        gf.update_aliens(aliens)
+        gf.update_screen(screen, settings, ship, bullets, aliens)
         time.sleep(0.002)
 
 
